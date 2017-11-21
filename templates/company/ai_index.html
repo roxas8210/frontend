@@ -1,0 +1,78 @@
+{% extends "templates/base.html" %}
+<!-- BEGIN HEADER -->
+{% block headcss %}
+    {% assets "main_css" %}
+        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+    {% endassets %}
+{% endblock %}
+{% block headjs %}
+    {% assets "head_js" %}
+        <script src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+{% endblock %}
+<!-- END HEADER -->
+<!-- BEGIN HEADIMGURL AND NICKNAME -->
+{% block headimgurl %}{{headimgurl or "../../all_static/static/layout/img/avatar.png"}}{% endblock %}
+{% block nickname %}{{nickname or "Your name"}}{% endblock %}
+<!-- END HEADIMGURL AND NICKNAME -->
+<!-- BEGIN CONTAINER -->
+{% block container %}
+    <div class="page-container">
+        {% from "templates/sidebar.html" import sidebar %}
+        {{sidebar(account, company, privilege, navigation)}}
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <!-- BEGIN PAGE BAR -->
+                {% from "templates/pagebar.html" import pagebar %}
+                {{pagebar(app_path, navigation)}}
+                <!-- END PAGE BAR -->
+
+                <div class="row">
+                    <div class="col-lg-12 col-xs-12 col-sm-12">
+                    {% from "templates/dashboard_stats_1.html" import custom_echart %}
+                    {{custom_echart(chart3.data, chart3.id, chart3.title, chart3.subtitle)}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 col-xs-12 col-sm-12">
+                    {% from "templates/dashboard_stats_1.html" import custom_echart_1 %}
+                    {{custom_echart_1(chart4.data, chart4.id, chart4.title, chart4.subtitle, mes1=chart4.mes1, mes2=chart4.mes2, mes3=chart4.mes3)}}
+                    </div>
+                    
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-xs-12 col-sm-12">
+                    {% from "templates/dashboard_stats_1.html" import custom_echart %}
+                    {{custom_echart(chart1.data, chart1.id, chart1.title, chart1.subtitle)}}
+                    </div>
+                    <div class="col-lg-6 col-xs-12 col-sm-12">
+                    {% from "templates/dashboard_stats_1.html" import custom_echart %}
+                    {{custom_echart(chart2.data, chart2.id, chart2.title, chart2.subtitle)}}
+                    </div>
+                </div>
+
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
+    </div>
+{% endblock %}
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+{% block footer %}
+    {% from "templates/footer.html" import footer %}
+    {{footer()}}
+{% endblock %}
+<!-- END FOOTER -->
+{% block bodyjs %}
+    {% assets "body_js" %}
+        <script src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+    <script type="text/javascript">
+        Layout.setSidebarMenuActiveLink('set',  $("[href='{{app_path}}']"));
+    </script>
+{% endblock %}

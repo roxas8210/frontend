@@ -1,0 +1,109 @@
+{% extends "templates/base.html" %}
+{% block headcss %}
+<link href="../../all_static/plugins/common-css/profile.min.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+<!-- BEGIN HEADER -->
+{% block header %}{% endblock %}
+<!-- END HEADER -->
+<!-- BEGIN HEADIMGURL AND NICKNAME -->
+{% block headimgurl %}{{headimgurl or "../../all_static/static/layout/img/avatar.png"}}{% endblock %}
+{% block nickname %}{{nickname or "Your name"}}{% endblock %}
+<!-- END HEADIMGURL AND NICKNAME -->
+<!-- BEGIN CONTAINER -->
+{% block container %}
+    <div class="page-container">
+        {% from "templates/sidebar.html" import sidebar %}
+        {{sidebar(account, company, privilege, navigation)}}
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <!-- BEGIN PAGE HEADER-->
+                <!-- BEGIN PAGE TITLE-->
+                <h1 class="page-title"> 我的主页
+                </h1>
+                <!-- END PAGE TITLE-->
+                <!-- END PAGE HEADER-->
+                <div class="profile">
+                <div class="row">
+                    <div class="col-md-3">
+                        <ul class="list-unstyled profile-nav">
+                            <li>
+                                <img src="{{headimgurl or '../../all_static/plugins/img/01.jpg'}}" class="img-responsive pic-bordered" alt="" />
+                                <a href="javascript:;" class="profile-edit"> edit </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;"> 消息
+                                    <span> 3 </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;"> 设置 </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-8 profile-info">
+                                <h1 class="font-green sbold uppercase">{{nickname or "Your name"}}</h1>
+                                <p> 欢迎使用宇造云数据平台，我们将与您共同打造更好的产品。 </p>
+                                <ul class="list-inline">
+                                    <li>
+                                        <i class="fa fa-map-marker"></i> 广东 </li>
+                                    <li>
+                                        <i class="fa fa-calendar"></i> {{date}} </li>
+                                    <li>
+                                        <i class="fa fa-briefcase"></i> 工程师 </li>
+                                </ul>
+                            </div>
+                            <!--end col-md-8-->
+                            <div class="col-md-4">
+                                <div class="portlet sale-summary">
+                                    <div class="portlet-title">
+                                        <div class="caption font-red sbold"> 登录信息 </div>
+                                        <div class="tools">
+                                            <a class="reload" href="javascript:;"> </a>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <span class="sale-info"> 上次登录
+                                                    <i class="fa fa-img-up"></i>
+                                                </span>
+                                                <span class="sale-num"> {{date}} </span>
+                                            </li><!-- 
+                                            <li>
+                                                <span class="sale-info"> 本周登录
+                                                    <i class="fa fa-img-down"></i>
+                                                </span>
+                                                <span class="sale-num"> 87 </span>
+                                            </li> -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-md-4-->
+                        </div>
+                        <!--end row-->
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
+    </div>
+{% endblock %}
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+{% block footer %}
+    {% from "templates/footer.html" import footer %}
+    {{footer()}}
+{% endblock %}
+<!-- END FOOTER -->
+{% block bodyjs %}
+    <script type="text/javascript">
+        Layout.setSidebarMenuActiveLink('set',  $("[href='{{app_path}}']"));
+    </script>
+{% endblock %}

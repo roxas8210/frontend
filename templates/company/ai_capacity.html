@@ -1,0 +1,147 @@
+{% extends "templates/base.html" %}
+<!-- BEGIN HEADER -->
+{% block headcss %}
+    {% assets "main_css" %}
+        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+    {% endassets %}
+{% endblock %}
+{% block headjs %}
+    {% assets "head_js" %}
+        <script src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+{% endblock %}
+<!-- END HEADER -->
+<!-- BEGIN HEADIMGURL AND NICKNAME -->
+{% block headimgurl %}{{headimgurl or "../../all_static/static/layout/img/avatar.png"}}{% endblock %}
+{% block nickname %}{{nickname or "Your name"}}{% endblock %}
+<!-- END HEADIMGURL AND NICKNAME -->
+<!-- BEGIN CONTAINER -->
+{% block container %}
+    <div class="page-container">
+        {% from "templates/sidebar.html" import sidebar %}
+        {{sidebar(account, company, privilege, navigation)}}
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <!-- BEGIN PAGE BAR -->
+                {% from "templates/pagebar.html" import pagebar %}
+                {{pagebar(app_path, navigation)}}
+                <!-- END PAGE BAR -->
+
+                <div class="row">
+                    <div class="col-lg-6 col-xs-12 col-sm-12">
+                    {% from "templates/dashboard_stats_1.html" import custom_echart %}
+                    {{custom_echart(chart1.data, chart1.id, chart1.title, chart1.subtitle)}}
+                    </div>
+                    <div class="col-lg-6 col-xs-12 col-sm-12">
+                        <div class="portlet light bordered">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="icon-bar-chart font-dark hide"></i>
+                                    <span class="caption-subject font-dark bold uppercase">人员产能</span>
+                                    <span class="caption-helper">所负责设备产能和</span>
+                                </div>
+                                <div class="actions">
+                                    <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                        <label class="btn btn-transparent blue-oleo btn-no-border btn-outline btn-circle btn-sm active">
+                                            <input type="radio" name="options" class="toggle" id="option1">昨日</label>
+                                        <label class="btn btn-transparent blue-oleo btn-no-border btn-outline btn-circle btn-sm">
+                                            <input type="radio" name="options" class="toggle" id="option2">上周</label>
+                                        <label class="btn btn-transparent blue-oleo btn-no-border btn-outline btn-circle btn-sm">
+                                            <input type="radio" name="options" class="toggle" id="option2">上月</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="table-scrollable table-scrollable-borderless">
+                                    <table class="table table-hover table-light">
+                                        <thead>
+                                            <tr class="uppercase">
+                                                <th colspan="2"> 人员 </th>
+                                                <th> 最大设计产能 </th>
+                                                <th> 负责设备数量 </th>
+                                                <th> 完成量 </th>
+                                                <th> 完成率 </th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td class="fit">
+                                                <img class="user-pic rounded" src="../assets/pages/media/users/avatar4.jpg"> </td>
+                                            <td>
+                                                <a href="javascript:;" class="primary-link">张三</a>
+                                            </td>
+                                            <td> 345万 </td>
+                                            <td> 15 </td>
+                                            <td> 224万 </td>
+                                            <td>
+                                                <span class="bold theme-font">65%</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fit">
+                                                <img class="user-pic rounded" src="../assets/pages/media/users/avatar5.jpg"> </td>
+                                            <td>
+                                                <a href="javascript:;" class="primary-link">李四</a>
+                                            </td>
+                                            <td> 560万 </td>
+                                            <td> 12 </td>
+                                            <td> 424万 </td>
+                                            <td>
+                                                <span class="bold theme-font">76%</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fit">
+                                                <img class="user-pic rounded" src="../assets/pages/media/users/avatar6.jpg"> </td>
+                                            <td>
+                                                <a href="javascript:;" class="primary-link">郑梅</a>
+                                            </td>
+                                            <td> 1345万 </td>
+                                            <td> 50 </td>
+                                            <td> 460万 </td>
+                                            <td>
+                                                <span class="bold theme-font">34%</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fit">
+                                                <img class="user-pic rounded" src="../assets/pages/media/users/avatar7.jpg"> </td>
+                                            <td>
+                                                <a href="javascript:;" class="primary-link">陈六</a>
+                                            </td>
+                                            <td> 645万 </td>
+                                            <td> 30 </td>
+                                            <td> 389万 </td>
+                                            <td>
+                                                <span class="bold theme-font">60%</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
+    </div>
+{% endblock %}
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+{% block footer %}
+    {% from "templates/footer.html" import footer %}
+    {{footer()}}
+{% endblock %}
+<!-- END FOOTER -->
+{% block bodyjs %}
+    {% assets "body_js" %}
+        <script src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+    <script type="text/javascript">
+        Layout.setSidebarMenuActiveLink('set',  $("[href='{{app_path}}']"));
+    </script>
+{% endblock %}

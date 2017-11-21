@@ -1,0 +1,30 @@
+{% macro pagebar(path='', navigation=[]) -%}
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        {% for heading, mastmenu, submenus in navigation %}
+        {% for submenu in submenus %}
+        {% if submenu.0 == path %}
+            {% if heading %}
+            <li>
+                <a>{{heading}}</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            {% endif %}
+            {% if mastmenu %}
+            <li>
+                <a>{{mastmenu.0}}</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            {% endif %}
+            <li>
+                <span>{{submenu.1}}</span>
+            </li>
+        {% endif %}  
+        {% endfor %}
+        {% endfor %}
+    </ul>
+</div>
+<h1 class="page-title"></h1>
+<!-- END PAGE BAR -->
+{%-endmacro %}
