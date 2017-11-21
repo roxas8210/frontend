@@ -1,5 +1,4 @@
 {% extends "templates/base.html" %}
-<!-- BEGIN HEADER -->
 {% block headcss %}
     {% assets "main_css" %}
         <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
@@ -10,6 +9,7 @@
         <script src="{{ ASSET_URL }}"></script>
     {% endassets %}
 {% endblock %}
+<!-- BEGIN HEADER -->
 <!-- END HEADER -->
 <!-- BEGIN HEADIMGURL AND NICKNAME -->
 {% block headimgurl %}{{headimgurl or "../../all_static/static/layout/img/avatar.png"}}{% endblock %}

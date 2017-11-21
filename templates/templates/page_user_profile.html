@@ -1,6 +1,16 @@
 {% extends "templates/base.html" %}
 {% block headcss %}
-<link href="../../all_static/plugins/common-css/profile.min.css" rel="stylesheet" type="text/css" />
+    {% assets "main_css" %}
+        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+    {% endassets %}
+    <link href="../../pages/css/profile.min.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block headjs %}
+    {% assets "head_js" %}
+        <script src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+{% endblock %}
+{% block headcss %}
 {% endblock %}
 <!-- BEGIN HEADER -->
 {% block header %}{% endblock %}
@@ -103,6 +113,9 @@
 {% endblock %}
 <!-- END FOOTER -->
 {% block bodyjs %}
+    {% assets "body_js" %}
+        <script src="{{ ASSET_URL }}"></script>
+    {% endassets %}
     <script type="text/javascript">
         Layout.setSidebarMenuActiveLink('set',  $("[href='{{app_path}}']"));
     </script>
