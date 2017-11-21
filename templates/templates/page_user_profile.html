@@ -14,7 +14,7 @@
 {% block header %}{% endblock %}
 <!-- END HEADER -->
 <!-- BEGIN HEADIMGURL AND NICKNAME -->
-{% block headimgurl %}{{headimgurl or "../../all_static/static/layout/img/avatar.png"}}{% endblock %}
+{% block headimgurl %}{{headimgurl or "../../layouts/layout/img/avatar.png"}}{% endblock %}
 {% block nickname %}{{nickname or "Your name"}}{% endblock %}
 <!-- END HEADIMGURL AND NICKNAME -->
 <!-- BEGIN CONTAINER -->
@@ -37,7 +37,7 @@
                     <div class="col-md-3">
                         <ul class="list-unstyled profile-nav">
                             <li>
-                                <img src="{{headimgurl or '../../all_static/plugins/img/01.jpg'}}" class="img-responsive pic-bordered" alt="" />
+                                <img src="{{headimgurl or '../../global/plugins/img/01.jpg'}}" class="img-responsive pic-bordered" alt="" />
                                 <a href="javascript:;" class="profile-edit"> edit </a>
                             </li>
                             <li>
